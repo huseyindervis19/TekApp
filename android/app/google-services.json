@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "322082502761",
+    "project_id": "tekapp-84556",
+    "storage_bucket": "tekapp-84556.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322082502761:android:660afa346712596b7a0af8",
+        "android_client_info": {
+          "package_name": "com.example.tek_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322082502761-2b957ncqlplbvggnp7g0hj3pc7jlfnd3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tek_app",
+            "certificate_hash": "649ae9b90a3e100cf86e1be3f5ed87c386f9452d"
+          }
+        },
+        {
+          "client_id": "322082502761-ge739ovjf5f44rcepueq4lcdnobteqgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-xQNHo0yujF0VpCHgGV-fvKjkXWo-dzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322082502761-ge739ovjf5f44rcepueq4lcdnobteqgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
