@@ -1,11 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tek_app/model/user_model.dart';
 import 'package:tek_app/view/home_view.dart';
+import '../services/firestore_user.dart';
 
 class AuthViewModel extends GetxController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -49,7 +49,10 @@ class AuthViewModel extends GetxController {
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
     );
-    await _auth.signInWithCredential(credential);
+    await _auth.signInWithCredential(credential).then((user) async {
+      saveUser(user);
+    });
+    Get.offAll(HomeView());
   }
 
   void facebookSignInMethod() async {
@@ -59,7 +62,10 @@ class AuthViewModel extends GetxController {
     final accessToken = result.accessToken?.token;
     if (result.status == FacebookLoginStatus.success) {
       final faceCredential = FacebookAuthProvider.credential(accessToken!);
-      await _auth.signInWithCredential(faceCredential);
+      await _auth.signInWithCredential(faceCredential).then((user) async {
+        saveUser(user);
+      });
+      ;
       Get.offAll(HomeView());
     }
   }
@@ -80,15 +86,30 @@ class AuthViewModel extends GetxController {
 
   void createAccountWiEmailAndPassword() async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      final us = await _auth
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )
+          .then((user) async {
+        saveUser(user);
+      });
+
       Get.offAll(HomeView());
     } catch (e) {
       print(e.toString());
       Get.snackbar("Error Login account", e.toString(),
           colorText: Colors.black, snackPosition: SnackPosition.TOP);
     }
+  }
+
+  // save user in firebase
+  void saveUser(UserCredential user) async {
+    UserModel userModel = UserModel(
+        name: name == null ? user.user?.displayName : name,
+        pic: '',
+        userId: user.user?.uid,
+        email: user.user?.email);
+    await FirestoreUser().addUserToFirestore(userModel);
   }
 }
