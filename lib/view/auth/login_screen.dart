@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tek_app/constance.dart';
 import 'package:tek_app/core/view_model/auth_view_model.dart';
+import 'package:tek_app/view/auth/register_view.dart';
 import 'package:tek_app/view/widgets/custom_button.dart';
 import 'package:tek_app/view/widgets/custom_button_social.dart';
 import 'package:tek_app/view/widgets/custom_text.dart';
@@ -30,10 +31,15 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     text: 'Welcome ,',
                     fontSize: 30,
                   ),
-                  CustomText(
-                    text: 'Sign Up',
-                    color: kMainColor,
-                    fontSize: 18,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(RegisterView());
+                    },
+                    child: CustomText(
+                      text: 'Sign Up',
+                      color: kMainColor,
+                      fontSize: 18,
+                    ),
                   ),
                 ],
               ),

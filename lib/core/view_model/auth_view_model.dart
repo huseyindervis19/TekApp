@@ -60,12 +60,27 @@ class AuthViewModel extends GetxController {
     if (result.status == FacebookLoginStatus.success) {
       final faceCredential = FacebookAuthProvider.credential(accessToken!);
       await _auth.signInWithCredential(faceCredential);
+      Get.offAll(HomeView());
     }
   }
 
   void sinnInWithEmailAndPassword() async {
     try {
       await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Get.offAll(HomeView());
+    } catch (e) {
+      print(e.toString());
+      Get.snackbar("Error Login account", e.toString(),
+          colorText: Colors.black, snackPosition: SnackPosition.TOP);
+    }
+  }
+
+  void createAccountWiEmailAndPassword() async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
