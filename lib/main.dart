@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tek_app/view/auth/login_screen.dart';
 import 'package:tek_app/view/control_view.dart';
 
 import 'helper/binding.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       initialBinding: Binding(),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Control_View(),
+        body: LoginScreen(),
       ),
     );
   }

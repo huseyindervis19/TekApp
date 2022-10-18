@@ -26,6 +26,7 @@ class CustomTextFotmField extends StatelessWidget {
             color: Colors.grey.shade900,
           ),
           TextFormField(
+            obscureText: hint == '*********' ? true : false,
             onSaved: onSave,
             validator: validator,
             decoration: InputDecoration(
