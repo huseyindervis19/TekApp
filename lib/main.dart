@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
       initialBinding: Binding(),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: LoginScreen(),
+        body: Control_View(),
       ),
+      theme: ThemeData(fontFamily: 'SourceSans'),
     );
   }
 }
