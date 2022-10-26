@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
-      init: Get.find<HomeViewModel>(),
+      init: Get.find<HomeViewModel>(),   // while got other page data keep in the same page
       builder: (controller) => controller.loading.value
           ? Center(child: CircularProgressIndicator())
           : Scaffold(
