@@ -15,7 +15,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
-      init: Get.find<HomeViewModel>(),   // while got other page data keep in the same page
+      init: Get.find<
+          HomeViewModel>(), // while got other page data keep in the same page
       builder: (controller) => controller.loading.value
           ? Center(child: CircularProgressIndicator())
           : Scaffold(
@@ -56,15 +57,15 @@ class HomeView extends StatelessWidget {
                         height: 30,
                       ),
                       _listViewProducts(),
-                      // Center(
-                      //     //// ***** delete
-                      //     child: TextButton(
-                      //   child: Text('Logout'),
-                      //   onPressed: () {
-                      //     _auth.signOut();
-                      //     Get.offAll(LoginScreen());
-                      //   },
-                      // )),
+                      Center(
+                          //// ***** delete
+                          child: TextButton(
+                        child: Text('Logout'),
+                        onPressed: () {
+                          _auth.signOut();
+                          Get.offAll(LoginScreen());
+                        },
+                      )),
                     ],
                   ),
                 ),
@@ -166,10 +167,12 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    CustomText(
-                      text: controller.productModel[index].description,
-                      color: Colors.grey,
-                      alignment: Alignment.bottomLeft,
+                    Expanded(
+                      child: CustomText(
+                        text: controller.productModel[index].description,
+                        color: Colors.grey,
+                        alignment: Alignment.bottomLeft,
+                      ),
                     ),
                     SizedBox(
                       height: 20,
