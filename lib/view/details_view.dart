@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:tek_app/constance.dart';
+import 'package:tek_app/core/view_model/cart_viewmodel.dart';
+import 'package:tek_app/model/cart_product_model.dart';
 import 'package:tek_app/model/product_model.dart';
 import 'package:tek_app/view/widgets/custom_button.dart';
 import 'package:tek_app/view/widgets/custom_text.dart';
@@ -138,13 +141,26 @@ class DetalisView extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  width: 180,
-                  height: 100,
-                  child: CustomButton(
-                    onPressed: () {},
-                    text: 'Add',
+                GetBuilder<CartViewModel>(
+                  init: Get.put(CartViewModel()),
+                  builder: (controller) => Container(
+                    padding: EdgeInsets.all(20),
+                    width: 180,
+                    height: 100,
+                    child: CustomButton(
+                      onPressed: () {
+                        controller.addProduct(
+                          CartProductModel(
+                              name: model.name,
+                              image: model.image,
+                              price: model.price,
+                              quantity: 1,
+                              productId: model.productId),
+                        );
+                        getTest(model.name);
+                      },
+                      text: 'Add',
+                    ),
                   ),
                 ),
               ],
@@ -153,5 +169,13 @@ class DetalisView extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  getTest(String name) {
+    Get.snackbar('successfully added', name + ' ',
+        icon: Icon(Icons.production_quantity_limits_outlined,
+            color: Colors.black),
+        colorText: Colors.black,
+        snackPosition: SnackPosition.TOP);
   }
 }

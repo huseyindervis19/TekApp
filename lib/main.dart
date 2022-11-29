@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:tek_app/view/auth/login_screen.dart';
 import 'package:tek_app/view/control_view.dart';
 
+import 'core/view_model/cart_viewmodel.dart';
 import 'helper/binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(CartViewModel());
   runApp(const MyApp());
 }
 
