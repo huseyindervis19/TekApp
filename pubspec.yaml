@@ -44,6 +44,10 @@ dependencies:
   cloud_firestore: ^3.5.1
   sqflite: ^2.2.0+3
   path: ^1.8.2
+  shared_preferences: ^2.0.15
+  flutter_svg: ^1.1.6
+
+
 
 
 
@@ -72,6 +76,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/images/cartEmpty.svg
 
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tek_app/constance.dart';
 import 'package:tek_app/core/view_model/cart_viewmodel.dart';
@@ -16,104 +17,127 @@ class CartView extends StatelessWidget {
           Expanded(
             child: GetBuilder<CartViewModel>(
               init: Get.put(CartViewModel()),
-              builder: (controller) => Container(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Container(
-                        height: 140,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 140,
-                              child: Image.network(
-                                controller.cartProductModel[index].image,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+              builder: (controller) => controller.cartProductModel.length == 0
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // SvgPicture.asset(
+                        //   'assete/images/cartEmpty.svg',
+                        //   width: 18,
+                        //   height: 18,
+                        //   allowDrawingOutsideViewBox: true,
+                        // ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CustomText(
+                          text: 'Cart Empty',
+                          fontSize: 32,
+                          alignment: Alignment.topCenter,
+                        )
+                      ],
+                    )
+                  : Container(
+                      child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          return Container(
+                              height: 140,
+                              child: Row(
                                 children: [
-                                  CustomText(
-                                    text:
-                                        controller.cartProductModel[index].name,
-                                    fontSize: 24,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  CustomText(
-                                    color: kMainColor,
-                                    text:
-                                        '\$ ${controller.cartProductModel[index].price.toString()}',
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
                                   Container(
                                     width: 140,
-                                    color: Colors.grey.shade200,
-                                    height: 40,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                    child: Image.network(
+                                      controller.cartProductModel[index].image,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        GestureDetector(
-                                          child: Icon(
-                                            Icons.add,
-                                            color: Colors.black,
-                                          ),
-                                          onTap: () {
-                                            controller.increaseQuantity(index);
-                                          },
+                                        CustomText(
+                                          text: controller
+                                              .cartProductModel[index].name,
+                                          fontSize: 24,
                                         ),
                                         SizedBox(
-                                          width: 20,
+                                          height: 10,
                                         ),
                                         CustomText(
-                                          alignment: Alignment.center,
-                                          text: controller
-                                              .cartProductModel[index].quantity
-                                              .toString(),
-                                          fontSize: 20,
-                                          color: Colors.black,
+                                          color: kMainColor,
+                                          text:
+                                              '\$ ${controller.cartProductModel[index].price.toString()}',
                                         ),
                                         SizedBox(
-                                          width: 20,
+                                          height: 20,
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            controller.decreaseQuantity(index);
-                    
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.only(
-                                              bottom: 20,
-                                            ),
-                                            child: Icon(
-                                              Icons.minimize,
-                                              color: Colors.black,
-                                            ),
+                                        Container(
+                                          width: 140,
+                                          color: Colors.grey.shade200,
+                                          height: 40,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              GestureDetector(
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color: Colors.black,
+                                                ),
+                                                onTap: () {
+                                                  controller
+                                                      .increaseQuantity(index);
+                                                },
+                                              ),
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              CustomText(
+                                                alignment: Alignment.center,
+                                                text: controller
+                                                    .cartProductModel[index]
+                                                    .quantity
+                                                    .toString(),
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  controller
+                                                      .decreaseQuantity(index);
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                    bottom: 20,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.minimize,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  )
                                 ],
-                              ),
-                            )
-                          ],
-                        ));
-                  },
-                  itemCount: controller.cartProductModel.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 15,
-                    );
-                  },
-                ),
-              ),
+                              ));
+                        },
+                        itemCount: controller.cartProductModel.length,
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 15,
+                          );
+                        },
+                      ),
+                    ),
             ),
           ),
           Padding(

@@ -57,15 +57,15 @@ class HomeView extends StatelessWidget {
                         height: 30,
                       ),
                       _listViewProducts(),
-                      Center(
-                          //// ***** delete
-                          child: TextButton(
-                        child: Text('Logout'),
-                        onPressed: () {
-                          _auth.signOut();
-                          Get.offAll(LoginScreen());
-                        },
-                      )),
+                      // Center(
+                      //     //// ***** delete
+                      //     child: TextButton(
+                      //   child: Text('Logout'),
+                      //   onPressed: () {
+                      //     _auth.signOut();
+                      //     Get.offAll(LoginScreen());
+                      //   },
+                      // )),
                     ],
                   ),
                 ),

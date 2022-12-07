@@ -7,3 +7,4 @@ final String columnQuantity = 'quantity';
 final String columnPrice = 'price';
 final String columnProductId = 'productId';
 const kMainColor = Color.fromRGBO(0, 197, 105, 1);
+const CACHED_USER_DATA = 'CACHED_USER_DATA';
