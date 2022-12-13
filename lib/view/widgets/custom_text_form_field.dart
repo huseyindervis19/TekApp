@@ -6,14 +6,14 @@ import 'custom_text.dart';
 class CustomTextFotmField extends StatelessWidget {
   final String text;
   final String? hint;
-  FormFieldSetter<String> onSave;
-  FormFieldValidator<String> validator;
+  FormFieldSetter<String>? onSave;
+  FormFieldValidator<String>? validator;
 
   CustomTextFotmField(
       {this.hint,
       required this.text,
-      required this.onSave,
-      required this.validator});
+       this.onSave,
+       this.validator});
 
   @override
   Widget build(BuildContext context) {

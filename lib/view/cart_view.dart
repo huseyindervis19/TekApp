@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tek_app/constance.dart';
 import 'package:tek_app/core/view_model/cart_viewmodel.dart';
+import 'package:tek_app/view/ckeckout/checkout_view.dart';
 import 'package:tek_app/view/widgets/custom_button.dart';
 import 'package:tek_app/view/widgets/custom_text.dart';
 
@@ -170,7 +171,9 @@ class CartView extends StatelessWidget {
                   height: 100,
                   width: 180,
                   child: CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(CheckOutView());
+                    },
                     text: 'CHECKOUT',
                   ),
                 ),

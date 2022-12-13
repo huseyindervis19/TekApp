@@ -36,19 +36,25 @@ class ProfileView extends StatelessWidget {
                                 ),
                                 // AssetImage('assets/images/userImage.jpg')
                                 image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/userImage.jpg')),
+                                  // image: NetworkImage(controller.userModel.pic),
+                                  image: AssetImage(
+                                    'assets/images/userImage.jpg',
+                                  ),
+                                ),
                               ),
                             ),
                             Column(
                               children: [
                                 CustomText(
-                                  text: 'Hussein AlDARWICH',
+                                  text: controller.userModel.name.toString() ==
+                                          ""
+                                      ? "User Name"
+                                      : controller.userModel.name.toString(),
                                   color: Colors.black,
                                   fontSize: 26,
                                 ),
                                 CustomText(
-                                  text: 'admin@gmail.com',
+                                  text: controller.userModel.email.toString(),
                                   color: Colors.black,
                                   fontSize: 16,
                                 ),
